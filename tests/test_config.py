@@ -16,9 +16,16 @@ import json
 #         schema = json.load(json_file)
 #     return schema
 
-def test_generic():
+class NotinRange(Exception):
+    def __init__(self,message="value not in range"):
+        #self.input_ = input_
+        self.message = message
+        super().__init__(self.message)
 
-    a=2
-    b=2
-    assert a == b
+def test_generic():
+    a=5
+
+    with pytest.raises(NotinRange):
+        if a not in range(10,20):
+            raise NotinRange
 
